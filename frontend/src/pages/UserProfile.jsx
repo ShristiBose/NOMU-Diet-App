@@ -36,7 +36,7 @@ export default function UserProfile() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/login");
+    navigate("/");
   };
 
   if (!profile) return <p className="loading">Loading profile...</p>;

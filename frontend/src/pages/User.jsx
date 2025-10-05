@@ -81,7 +81,7 @@ export default function User() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/login");
+    navigate("/");
   };
 
   if (!profile) return <p>Loading profile...</p>;

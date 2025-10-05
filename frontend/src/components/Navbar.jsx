@@ -12,6 +12,7 @@ export default function Navbar() {
 
         {/* Menu Links */}
         <div className="navbar-menu">
+          <Link to="/" className="navbar-link">Home</Link>
           <Link to="/dashboard" className="navbar-link">Dashboard</Link>
           <Link to="/login" className="navbar-link">Login</Link>
         </div>
