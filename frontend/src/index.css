@@ -182,18 +182,47 @@ button:focus-visible {
 }
 
 .navbar-menu {
-  display: none;
+  display: flex;
   gap: 1.5rem; /* space-x-6 */
 }
 
 .navbar-link {
+  position: relative;
   text-decoration: none;
   color: white;
   transition: color 0.3s;
+  padding-bottom: 2px;
 }
 
+/* Hover effect */
 .navbar-link:hover {
   color: #86efac; /* green-300 */
+}
+
+/* Active link styling */
+.navbar-link.active {
+  color: #86efac; /* green-300 */
+}
+
+/* Underline effect */
+.navbar-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #86efac; /* underline color */
+  transition: width 0.3s ease, left 0.3s ease;
+  transform: translateX(-50%);
+}
+
+/* Hover and active underline animation */
+.navbar-link:hover::after,
+.navbar-link.active::after {
+  width: 100%;
+  left: 0%;
+  transform: translateX(0);
 }
 
 /* Mobile Hamburger */
@@ -208,6 +237,8 @@ button:focus-visible {
   font-size: 1.5rem;
   cursor: pointer;
 }
+
+
 
 /* -------------------- Responsive -------------------- */
 @media (min-width: 768px) {
@@ -974,16 +1005,21 @@ to { opacity: 1; transform: scale(1); }
 }
 
 .profile-main {
-  max-width: 800px;
-  margin: 0 auto;
+  flex: 1;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* 2 per row */
+  gap: 2rem; /* spacing between sections */
 }
 
 .profile-section {
   background: #fff;
   border-radius: 0.75rem;
   padding: 1.5rem;
-  margin-bottom: 2rem;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .profile-section .section-title {
@@ -1010,6 +1046,50 @@ to { opacity: 1; transform: scale(1); }
   color: #374151;
   font-size: 1.1rem;
 }
+
+/* Profile Page Animations */
+.fade-up {
+  animation: fadeUp 0.9s ease;
+}
+
+.slide-in {
+  animation: slideDown 0.8s ease;
+}
+
+/* Profile Page Enhancements */
+.profile-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.8s ease;
+}
+
+.profile-main {
+  flex: 1;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.profile-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.profile-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.nav-buttons button {
+  transition: all 0.3s ease;
+}
+
+.nav-buttons button:hover {
+  transform: scale(1.05);
+}
+
 
 /* -------------------- Dashboard Page -------------------- */
 .dashboard-charts {
@@ -1040,3 +1120,79 @@ to { opacity: 1; transform: scale(1); }
 }
 
 
+/* Chatbot Toggle Button */
+.chatbot-toggle-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #16a34a;
+  color: white;
+  padding: 0.8rem 1rem;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
+  z-index: 1000;
+}
+.chatbot-toggle-btn:hover {
+  transform: scale(1.1);
+  background: #15803d;
+}
+
+/* Wrapper for Main + Chat to stay between header and footer */
+.main-chat-wrapper {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 120px); /* adjust if header + footer height differs */
+}
+
+/* Main Content */
+.user-main {
+  flex: 1;
+  transition: width 0.3s ease;
+}
+
+/* Chatbot Panel */
+.chatbot-container {
+  width: 0;
+  background: #f0fdf4;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  border-left: 1px solid #ccc;
+}
+.chatbot-container.open {
+  width: 350px; /* fixed width so it doesn't cover header/footer */
+}
+
+/* Chatbot Header */
+.chatbot-header {
+  background: #16a34a;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Chatbot Body */
+.chatbot-body {
+  padding: 1rem;
+  height: calc(100% - 60px); /* subtract header height */
+  overflow-y: auto;
+}
+
+/* Floating Button */
+.chatbot-toggle-btn {
+  position: fixed;
+  bottom: 3rem;
+  right: 2rem;
+  background: #16a34a;
+  color: white;
+  padding: 0.8rem 1rem;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}

@@ -1,20 +1,42 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-container">
         {/* Logo / Brand */}
-        <Link to="/home" className="navbar-logo">
+        <NavLink to="/home" className="navbar-logo">
           NOMU
-        </Link>
+        </NavLink>
 
         {/* Menu Links */}
         <div className="navbar-menu">
-          <Link to="/" className="navbar-link">Home</Link>
-          <Link to="/dashboard" className="navbar-link">Dashboard</Link>
-          <Link to="/login" className="navbar-link">Login</Link>
+          <NavLink 
+            to="/" 
+            className={({ isActive }) => 
+              `navbar-link ${isActive ? "active" : ""}`
+            }
+            end
+          >
+            Home
+          </NavLink>
+          <NavLink 
+            to="/dashboard" 
+            className={({ isActive }) => 
+              `navbar-link ${isActive ? "active" : ""}`
+            }
+          >
+            Dashboard
+          </NavLink>
+          <NavLink 
+            to="/login" 
+            className={({ isActive }) => 
+              `navbar-link ${isActive ? "active" : ""}`
+            }
+          >
+            Login
+          </NavLink>
         </div>
 
         {/* Mobile Menu (Hamburger) */}

@@ -46,7 +46,7 @@ export default function Login() {
             <input type="password" placeholder="Password" required onChange={handleChange} />
             <button type="submit">Login</button>
           </form>
-
+          <Link to="/forgot-password" className="auth-switch">Forgot Password</Link>
           <p className="auth-switch">
             Don’t have an account? <Link to="/register">Click here to register</Link>
           </p>

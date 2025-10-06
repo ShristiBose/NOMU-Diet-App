@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// Correcting path assumption: Assuming components are in the same directory level as pages
-// and index.css is in the root 'src' directory.
-import Navbar from "../components/Navbar"; 
-import Footer from "../components/Footer"; 
-import "../index.css"; 
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import "../index.css";
 
 export default function User() {
   const [profile, setProfile] = useState(null);
   const [condition, setCondition] = useState("Diabetes");
-  const [water, setWater] = useState(3); // glasses drunk
-  const navigate = useNavigate();
+  const [water, setWater] = useState(3);
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const [images, setImages] = useState([]);
+  const [chatOpen, setChatOpen] = useState(false);
 
-    const handleReviewSubmit = async () => {
+  const navigate = useNavigate();
+
+  const toggleChat = () => setChatOpen(!chatOpen);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
+  const handleReviewSubmit = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
       alert("Please login to submit review");
@@ -33,7 +40,7 @@ export default function User() {
         body: JSON.stringify({
           rating,
           reviewText,
-          images: [], // For now, we just send an empty array or base64 later
+          images: [],
         }),
       });
 
@@ -51,7 +58,7 @@ export default function User() {
       alert("Server error, try again later");
     }
   };
-  
+
   useEffect(() => {
     const fetchProfile = async () => {
       const token = localStorage.getItem("token");
@@ -66,7 +73,7 @@ export default function User() {
         if (res.ok) {
           setProfile(data);
           if (data.conditions && data.conditions.length > 0 && data.conditions[0] !== "None") {
-            setCondition(data.conditions[0]); // set first condition by default
+            setCondition(data.conditions[0]);
           }
         } else {
           console.error(data.msg || "Failed to fetch profile");
@@ -79,14 +86,8 @@ export default function User() {
     fetchProfile();
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
-  };
-
   if (!profile) return <p>Loading profile...</p>;
 
-  // dummy meal recommendations
   const meals = {
     breakfast: "Vegetable Upma + 1 boiled egg",
     lunch: "Dal + Brown Rice + Salad",
@@ -95,10 +96,9 @@ export default function User() {
   };
 
   return (
-    <div className="user-app">
-      {/* Custom Header: Acts as the top nav for the dashboard */}
+    <div className="user-app" style={{ position: "relative", minHeight: "100vh" }}>
+      {/* Header */}
       <header className="user-header">
-        {/* Left Side: Welcome Message */}
         <div className="user-header-left">
           <h2>Welcome, {profile.name} 👋</h2>
           <p>
@@ -106,99 +106,116 @@ export default function User() {
           </p>
         </div>
 
-        {/* Right Side: Buttons */}
         <div className="nav-buttons">
           <button onClick={() => navigate("/user-profile")} className="profile-btn">
-            Profile
+            👤 View Profile
           </button>
           <button onClick={handleLogout} className="logout-btn">
-            Logout
+            🚪 Logout
           </button>
         </div>
       </header>
 
-      {/* Main User Content */}
-      <main className="user-main">
-        {/* Meal Recommendations */}
-        <section className="user-section">
-          <h3 className="section-title">Today's Meals</h3>
-          <div className="meal-grid">
-            {Object.entries(meals).map(([mealType, mealValue]) => (
-              <div key={mealType} className="meal-card">
-                <h4 className="meal-type">{mealType}</h4>
-                <p>{mealValue}</p>
-                <button className="chatbot-btn">Don’t like this? Ask chatbot →</button>
-              </div>
-            ))}
+      {/* Main + Chat Container */}
+      <div className="main-chat-wrapper" style={{ display: "flex" }}>
+        <main className={`user-main ${chatOpen ? "chat-open" : ""}`}>
+          {/* Meals Section */}
+          <section className="user-section">
+            <h3 className="section-title">Today's Meals 🍽️</h3>
+            <div className="meal-grid">
+              {Object.entries(meals).map(([mealType, mealValue]) => (
+                <div key={mealType} className="meal-card">
+                  <h4 className="meal-type">{mealType}</h4>
+                  <p>{mealValue}</p>
+                  <button className="chatbot-btn">💬 Don’t like this? Ask chatbot →</button>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Hydration & Reminders */}
+          <section className="user-section">
+            <h3 className="section-title">Reminders ⏰</h3>
+            <div className="hydration">
+              <p className="label">💧 Hydration</p>
+              <p>
+                {water}/8 glasses drunk{" "}
+                <button onClick={() => setWater(water + 1)} className="add-btn">
+                  ➕ +1
+                </button>
+              </p>
+            </div>
+            <div className="meal-reminders">
+              <p className="label">🍱 Meal Times</p>
+              <ul>
+                <li>Breakfast – 9:00 AM</li>
+                <li>Lunch – 1:30 PM</li>
+                <li>Snacks – 5:00 PM</li>
+                <li>Dinner – 8:30 PM</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Feedback Section */}
+          <section className="user-section">
+            <h3 className="section-title">Share Your Feedback 💭</h3>
+
+            <div className="rating-stars">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <span
+                  key={star}
+                  className={star <= (hover || rating) ? "star filled" : "star"}
+                  onClick={() => setRating(star)}
+                  onMouseEnter={() => setHover(star)}
+                  onMouseLeave={() => setHover(0)}
+                >
+                  ★
+                </span>
+              ))}
+            </div>
+
+            <textarea
+              className="review-input"
+              placeholder="Write your review..."
+              rows="4"
+              value={reviewText}
+              onChange={(e) => setReviewText(e.target.value)}
+            ></textarea>
+
+            <input
+              type="file"
+              className="review-upload"
+              multiple
+              accept="image/*"
+              onChange={(e) => setImages([...e.target.files])}
+            />
+
+            <button className="submit-review-btn" onClick={handleReviewSubmit}>
+              📨 Submit Review
+            </button>
+          </section>
+        </main>
+
+        {/* Chatbot Panel */}
+        <div className={`chatbot-container ${chatOpen ? "open" : ""}`}>
+          <div className="chatbot-header">
+            <h4>💬 Chatbot</h4>
+            <button onClick={toggleChat}>✖</button>
           </div>
-        </section>
-
-        {/* Reminders & Hydration */}
-        <section className="user-section">
-          <h3 className="section-title">Reminders</h3>
-          <div className="hydration">
-            <p className="label">Hydration</p>
-            <p>
-              {water}/8 glasses drunk 💧
-              <button onClick={() => setWater(water + 1)} className="add-btn">
-                +1
-              </button>
-            </p>
+          <div className="chatbot-body">
+            <p>Hello! I’m here to help you with your meals and diet 🥗</p>
+            {/* Add chat messages or chatbot UI here */}
           </div>
-          <div className="meal-reminders">
-            <p className="label">Meals</p>
-            <ul>
-              <li>Breakfast – 9:00 AM</li>
-              <li>Lunch – 1:30 PM</li>
-              <li>Snacks – 5:00 PM</li>
-              <li>Dinner – 8:30 PM</li>
-            </ul>
-          </div>
-        </section>
+        </div>
+      </div>
 
-{/* Review & Feedback Section */}
-<section className="user-section">
-  <h3 className="section-title">Share Your Feedback</h3>
+      {/* Floating Chatbot Button */}
+      {!chatOpen && (
+        <button className="chatbot-toggle-btn" onClick={toggleChat}>
+          💬 Chat
+        </button>
+      )}
 
-  {/* Star Ratings */}
-  <div className="rating-stars">
-    {[1, 2, 3, 4, 5].map((star) => (
-      <span
-        key={star}
-        className={star <= (hover || rating) ? "star filled" : "star"}
-        onClick={() => setRating(star)}
-        onMouseEnter={() => setHover(star)}
-        onMouseLeave={() => setHover(0)}
-      >
-        ★
-      </span>
-    ))}
-  </div>
-
-  {/* Review Text */}
-  <textarea
-    className="review-input"
-    placeholder="Write your review..."
-    rows="4"
-    value={reviewText}
-    onChange={(e) => setReviewText(e.target.value)}
-  ></textarea>
-
-  {/* Upload Images (not wired yet) */}
-  <input
-    type="file"
-    className="review-upload"
-    multiple
-    accept="image/*"
-    onChange={(e) => setImages([...e.target.files])}
-  />
-
-  {/* Submit Button */}
-  <button className="submit-review-btn" onClick={handleReviewSubmit}>
-    Submit Review
-  </button>
-</section>
-      </main>
       <Footer />
     </div>
   );
