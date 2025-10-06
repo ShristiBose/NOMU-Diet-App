@@ -1,24 +1,47 @@
-// middleware/auth.js
-const jwt = require("jsonwebtoken");
+// backend/middleware/authMiddleware.js
+// If you don't have this file, create it with this content
 
-module.exports = function (req, res, next) {
-  // Get token from header
-  const token = req.header("x-auth-token");
+const jwt = require('jsonwebtoken');
 
-  // Check if no token
-  if (!token) {
-    return res.status(401).json({ msg: "No token, authorization denied" });
-  }
-
+const authMiddleware = (req, res, next) => {
   try {
+    // Get token from header
+    const token = req.header('Authorization')?.replace('Bearer ', '');
+
+    if (!token) {
+      return res.status(401).json({ 
+        error: 'No token provided',
+        message: 'Please login to access this resource'
+      });
+    }
+
     // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    // Attach user info from payload
-    req.user = decoded.user; // <-- now req.user.id will exist
-
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key');
+    
+    // Add user info to request
+    req.user = decoded;
+    
     next();
-  } catch (err) {
-    res.status(401).json({ msg: "Token is not valid" });
+  } catch (error) {
+    if (error.name === 'JsonWebTokenError') {
+      return res.status(401).json({ 
+        error: 'Invalid token',
+        message: 'Please login again'
+      });
+    }
+    
+    if (error.name === 'TokenExpiredError') {
+      return res.status(401).json({ 
+        error: 'Token expired',
+        message: 'Your session has expired. Please login again'
+      });
+    }
+
+    res.status(500).json({ 
+      error: 'Authentication failed',
+      message: 'Could not authenticate user'
+    });
   }
 };
+
+module.exports = authMiddleware;
