@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import '../index.css'; // single CSS for the whole app
+import "../index.css"; // single CSS for the whole app
 
 export default function Home() {
   return (
@@ -19,36 +19,83 @@ export default function Home() {
           <button className="hero-button">Start Your Free Plan Today</button>
         </section>
 
-        {/* Why Nomu Section - Now a Feature Overview */}
+        {/* Image Carousel Section */}
+        <section className="section image-carousel">
+          <div className="carousel-track">
+            <div className="carousel-slide">
+              <img src="img1.jpeg" alt="Healthy Indian meal 1" />
+            </div>
+            <div className="carousel-slide">
+              <img src="img2.jpeg" alt="Healthy Indian meal 2" />
+            </div>
+            <div className="carousel-slide">
+              <img src="img3.jpeg" alt="Healthy Indian meal 3" />
+            </div>
+            <div className="carousel-slide">
+              <img src="img4.jpeg" alt="Healthy Indian meal 4" />
+            </div>
+            <div className="carousel-slide">
+              <img src="img5.jpeg" alt="Healthy Indian meal 5" />
+            </div>
+
+            {/* Duplicate for seamless infinite scroll */}
+            <div className="carousel-slide">
+              <img src="img1.jpeg" alt="Healthy Indian meal 1" />
+            </div>
+            <div className="carousel-slide">
+              <img src="img2.jpeg" alt="Healthy Indian meal 2" />
+            </div>
+            <div className="carousel-slide">
+              <img src="img3.jpeg" alt="Healthy Indian meal 3" />
+            </div>
+            <div className="carousel-slide">
+              <img src="img4.jpeg" alt="Healthy Indian meal 4" />
+            </div>
+            <div className="carousel-slide">
+              <img src="img5.jpeg" alt="Healthy Indian meal 5" />
+            </div>
+          </div>
+        </section>
+
+        {/* Updated Why Choose NOMU Section */}
         <section className="section feature-overview">
           <h2>Why Choose NOMU?</h2>
           <p className="section-description">
-            We go beyond generic meal plans. NOMU uses AI to understand your unique
-            needs, giving you a diet plan that is effective, enjoyable, and distinctly Indian.
+            At NOMU, we blend science with tradition — merging advanced AI nutrition insights 
+            with the vibrant flavors and cultural richness of Indian cuisine. Our platform doesn’t 
+            just tell you what to eat; it helps you understand <strong>why</strong> each choice matters for your 
+            unique body, health goals, and lifestyle.
           </p>
+          <p className="section-highlight">
+            Whether you're managing diabetes, aiming for balanced weight, or just eating cleaner — 
+            NOMU ensures every meal feels familiar, wholesome, and made for <em>you</em>.
+          </p>
+
           <div className="feature-cards-grid">
             <div className="feature-card">
-              <img src="/path/to/icon-or-image-1.svg" alt="Personalization Icon" className="feature-icon" />
+              <img src="img.png" alt="Personalization Icon" className="feature-icon" />
               <h4>Health-First Personalization</h4>
               <p>
                 Get meal plans expertly tailored to your specific health conditions, such as 
                 diabetes, hypertension, or weight management goals.
               </p>
             </div>
+
             <div className="feature-card">
-              <img src="/path/to/icon-or-image-2.svg" alt="Meal Plan Icon" className="feature-icon" />
+              <img src="img.png" alt="Meal Plan Icon" className="feature-icon" />
               <h4>Customized Daily Plans</h4>
               <p>
-                Receive structured, easy-to-follow meal plans for every day of the week,
-                designed for balance and variety using local, accessible ingredients.
+                Structured, easy-to-follow daily meal plans designed for balance, taste, and variety — 
+                using accessible Indian ingredients.
               </p>
             </div>
+
             <div className="feature-card">
-              <img src="/path/to/icon-or-image-3.svg" alt="Swap Icon" className="feature-icon" />
+              <img src="img.png" alt="Swap Icon" className="feature-icon" />
               <h4>Local Meal Swap & Customization</h4>
               <p>
-                Don't like what's on the menu? Swap out any dish for a healthy, culturally-appropriate 
-                alternative based on your local cuisine and preferences.
+                Swap any dish for a healthy, culturally-appropriate alternative from your region, 
+                without breaking your nutrition goals.
               </p>
             </div>
           </div>
@@ -56,33 +103,41 @@ export default function Home() {
 
         {/* "Can I Eat This?" Feature Section with Image */}
         <section className="section image-feature-section feature-query">
-            <div className="feature-text-content">
-                <h2>Quick Queries: "Can I Eat This?"</h2>
-                <p>
-                    Instant peace of mind. Use our quick query tool to check if a specific food
-                    aligns with your current health plan, restrictions, or calorie goals.
-                </p>
-                <button className="secondary-button">Try the Query Tool</button>
-            </div>
-            <div className="feature-image-wrapper">
-                <img src="/path/to/chatbot-screenshot.jpg" alt="Screenshot of the 'Can I Eat This' feature on a phone" className="feature-image" />
-            </div>
+          <div className="feature-text-content">
+            <h2>Quick Queries: "Can I Eat This?"</h2>
+            <p>
+              Instant peace of mind. Use our quick query tool to check if a specific food
+              aligns with your current health plan, restrictions, or calorie goals.
+            </p>
+            <button className="secondary-button">Try the Query Tool</button>
+          </div>
+          <div className="feature-image-wrapper">
+            <img
+              src="img.png"
+              alt="Screenshot of the 'Can I Eat This' feature on a phone"
+              className="feature-image"
+            />
+          </div>
         </section>
 
-        {/* Reminders & Alerts Feature Section (Reversed Layout) */}
-        <section className="section image-feature-section feature-reminders reverse-layout">
-            <div className="feature-image-wrapper">
-                <img src="/path/to/alert-system-screen.jpg" alt="Screen showing health reminders and alerts" className="feature-image" />
-            </div>
-            <div className="feature-text-content">
-                <h2>Intelligent Reminders & Alerts</h2>
-                <p>
-                    Stay on track effortlessly. NOMU sends you timely reminders for meals and hydration. 
-                    Plus, receive smart alerts based on past meals, suggesting adjustments to maintain 
-                    optimal nutrient intake.
-                </p>
-                <button className="secondary-button">View Alerts Settings</button>
-            </div>
+        {/* Reminders & Alerts Feature Section (Image Left, Text Right) */}
+        <section className="section image-feature-section feature-reminders">
+          <div className="feature-image-wrapper">
+            <img
+              src="img.png"
+              alt="Screen showing health reminders and alerts"
+              className="feature-image"
+            />
+          </div>
+          <div className="feature-text-content">
+            <h2>Intelligent Reminders & Alerts</h2>
+            <p>
+              Stay on track effortlessly. NOMU sends you timely reminders for meals and hydration. 
+              Plus, receive smart alerts based on past meals, suggesting adjustments to maintain 
+              optimal nutrient intake.
+            </p>
+            <button className="secondary-button">View Alerts Settings</button>
+          </div>
         </section>
 
         {/* Mission Statement */}
