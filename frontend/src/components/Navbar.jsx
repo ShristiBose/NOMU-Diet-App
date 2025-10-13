@@ -7,7 +7,7 @@ export default function Navbar() {
       <div className="navbar-container">
         {/* Logo / Brand */}
         <NavLink to="/home" className="navbar-logo">
-          NOMU
+          <img src="Logo.png" alt="logo" />
         </NavLink>
 
         {/* Menu Links */}

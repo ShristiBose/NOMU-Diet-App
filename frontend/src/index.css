@@ -1,17 +1,11 @@
 /* -------------------- Global / Base Styles -------------------- */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color: #1f2937; /* gray-800 */
+  background-color: #ffffff;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -22,44 +16,17 @@ body {
   flex-direction: column;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: none;
-}
-a:hover {
-  color: #535bf2;
+/* Smooth fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease-in-out forwards;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -72,90 +39,263 @@ button:focus-visible {
 
 .main-content {
   flex-grow: 1;
+  overflow: hidden;
 }
 
-/* -------------------- Home Page / Hero Section -------------------- */
+/* -------------------- Hero Section -------------------- */
 .hero-section {
-  background-color: #d1fae5; /* green-100 */
+  background: #dcfce7;
   text-align: center;
-  padding: 5rem 2rem;
+  padding: 6rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::after {
+  content: "";
+  background-image: url("/assets/bg-leaves.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.15;
+  position: absolute;
+  inset: 0;
 }
 
 .hero-title {
-  font-size: 3rem;
-  font-weight: bold;
+  font-size: 3.2rem;
+  font-weight: 800;
   color: #065f46; /* green-800 */
+  z-index: 1;
+  position: relative;
+  letter-spacing: 0.5px;
 }
 
 .hero-subtitle {
   margin-top: 1rem;
-  font-size: 1.2rem;
-  color: #374151; /* gray-700 */
+  font-size: 1.25rem;
+  color: #14532d; /* darker green */
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  position: relative;
 }
 
 .hero-button {
-  margin-top: 1.5rem;
-  padding: 0.75rem 1.5rem;
-  background-color: #16a34a; /* green-600 */
+  margin-top: 2rem;
+  padding: 0.85rem 2rem;
+  background-color: #16a34a;
   color: white;
+  font-weight: 600;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1;
+  position: relative;
 }
 
 .hero-button:hover {
-  background-color: #15803d; /* green-700 */
+  background-color: #15803d;
+  transform: scale(1.05);
+}
+/* -------------------- Image Carousel Section -------------------- */
+.image-carousel {
+  background-color: #f9fafb;
+  overflow: hidden;
+  padding: 3rem 0;
+  position: relative;
 }
 
-/* -------------------- Sections (Why Nomu, Mission) -------------------- */
-.section {
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  animation: scroll 25s linear infinite;
+  width: max-content;
+}
+
+.carousel-slide {
+  flex: 0 0 auto;
+  width: 250px;
+  height: 180px;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  background: white;
+  transition: transform 0.4s ease;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-slide:hover {
+  transform: scale(1.05);
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* -------------------- Feature Overview -------------------- */
+.feature-overview {
+  background-color: #f0fdf4;
   text-align: center;
   padding: 4rem 2rem;
 }
 
-.section h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
+.feature-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
 }
 
-.section p {
+.feature-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.feature-icon {
+  height: 60px;
+  width: 60px;
+  margin-bottom: 1rem;
+}
+
+.feature-card h4 {
+  font-size: 1.25rem;
+  color: #065f46;
+  margin-bottom: 0.75rem;
+}
+
+.feature-card p {
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+/* -------------------- Image Feature Sections -------------------- */
+.image-feature-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 4rem 6%;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+}
+
+.reverse-layout {
+  flex-direction: row-reverse;
+}
+
+.feature-text-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.feature-text-content h2 {
+  font-size: 2rem;
+  color: #064e3b;
+}
+
+.feature-text-content p {
+  margin-top: 1rem;
+  color: #374151;
+  line-height: 1.7;
+  max-width: 500px;
+}
+
+.secondary-button {
+  margin-top: 1.5rem;
+  background-color: transparent;
+  border: 2px solid #16a34a;
+  color: #16a34a;
+  padding: 0.7rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.secondary-button:hover {
+  background-color: #16a34a;
+  color: white;
+}
+
+.feature-image-wrapper {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.feature-image {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature-image:hover {
+  transform: scale(1.05);
+}
+
+/* -------------------- Mission Section -------------------- */
+.mission-section {
+  background: #dcfce7;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.mission-section h2 {
+  color: #065f46;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.mission-section p {
+  color: #374151;
   max-width: 700px;
   margin: 0 auto;
-  color: #4b5563; /* gray-600 */
+  line-height: 1.7;
 }
 
-/* -------------------- Reviews -------------------- */
-.reviews-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+/* -------------------- Responsive -------------------- */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
 
-@media (min-width: 768px) {
-  .reviews-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .hero-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .image-feature-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .feature-text-content, .feature-image-wrapper {
+    flex: 1 1 100%;
   }
 }
 
-.review-card {
-  padding: 1.5rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.review-card p {
-  color: #4b5563;
-}
-
-.review-card span {
-  display: block;
-  margin-top: 1rem;
-  font-weight: 600;
-}
 
 /* -------------------- Navbar -------------------- */
 .navbar {
@@ -173,12 +313,18 @@ button:focus-visible {
   align-items: center;
 }
 
+.navbar-logo img {
+  height: 40px; /* fits nicely inside navbar */
+  width: auto;  /* keeps aspect ratio */
+  display: block;
+}
+
+/* If logo is an inline SVG or icon */
 .navbar-logo {
-  font-size: 1.5rem; /* text-2xl */
-  font-weight: bold;
-  letter-spacing: 1px; /* tracking-wide */
-  text-decoration: none;
-  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
 }
 
 .navbar-menu {
@@ -250,129 +396,7 @@ button:focus-visible {
   }
 }
 
-/* -------------------- New Feature Sections -------------------- */
 
-.section-description {
-  margin-bottom: 3rem;
-  font-size: 1.1rem;
-}
-
-/* Feature Cards Grid */
-.feature-cards-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: left;
-}
-
-@media (min-width: 768px) {
-  .feature-cards-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.feature-card {
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  background-color: #f0fdf4; /* green-50 for a subtle background */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
-}
-
-.feature-icon {
-  width: 48px; /* Standard icon size */
-  height: 48px;
-  margin-bottom: 1rem;
-  /* You should use a colored SVG/PNG for your icons */
-}
-
-.feature-card h4 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: #065f46; /* green-800 */
-}
-
-.feature-card p {
-    color: #374151; /* gray-700 */
-    max-width: none; /* remove max-width restriction for card content */
-}
-
-
-/* Image Feature Section (Layout) */
-.image-feature-section {
-  padding: 5rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-@media (min-width: 992px) {
-  .image-feature-section {
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    gap: 5rem;
-  }
-
-  .image-feature-section.reverse-layout {
-    flex-direction: row-reverse;
-  }
-}
-
-.feature-text-content {
-  flex: 1;
-}
-
-.feature-text-content h2 {
-  text-align: inherit; /* Inherit from container: center on mobile, left on desktop */
-}
-
-.feature-text-content p {
-    max-width: none; /* remove max-width restriction for cleaner layout */
-    margin: 1rem 0 2rem;
-    text-align: inherit;
-    font-size: 1.1rem;
-}
-
-.feature-image-wrapper {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.feature-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 1rem;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Secondary Button Style */
-.secondary-button {
-    background-color: #f0fdf4; /* Light green background */
-    color: #16a34a; /* green-600 text */
-    border: 1px solid #16a34a;
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-.secondary-button:hover {
-    background-color: #16a34a;
-    color: white;
-    border-color: #16a34a;
-}
 
 /* -------------------- Footer -------------------- */
 .footer {

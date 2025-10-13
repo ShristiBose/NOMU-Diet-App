@@ -127,7 +127,7 @@ export default function User() {
                 <div key={mealType} className="meal-card">
                   <h4 className="meal-type">{mealType}</h4>
                   <p>{mealValue}</p>
-                  <button className="chatbot-btn">💬 Don’t like this? Ask chatbot →</button>
+                  <button className="chatbot-btn">View Recipe →</button>
                 </div>
               ))}
             </div>
