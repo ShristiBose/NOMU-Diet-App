@@ -8,7 +8,7 @@ import ResetPassword from "./pages/ResetPassword";
 import Profile from "./pages/Profile";
 import User from "./pages/User";
 import Recommendation from "./pages/Recommendation";
-import Chatbot from "./pages/Chatbot";
+import Chatbot from "./pages/ChatBot";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import UserProfile from "./pages/UserProfile";

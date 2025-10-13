@@ -3,6 +3,9 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const authRoutes = require('./routes/authRoutes.js'); // Add this line
+const profileRoutes = require('./routes/profileRoute.js');
+const reviewRoutes = require('./routes/reviewRoute.js');
 
 const chatRoutes = require('./routes/chatRoutes.js'); // make sure filename matches
 
@@ -15,7 +18,10 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/chat', chatRoutes);
+app.use('/api/profile', profileRoutes);
+app.use('/api/review', reviewRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
