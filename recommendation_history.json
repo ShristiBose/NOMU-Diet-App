@@ -1,0 +1,296 @@
+{
+  "runs": [
+    {
+      "timestamp": "2025-10-17T21:49:41.651733",
+      "foods": [
+        "idli",
+        "idli",
+        "masoor dal",
+        "jeera rice",
+        "chana chaat",
+        "batata vada",
+        "papad",
+        "kanji"
+      ]
+    },
+    {
+      "timestamp": "2025-10-17T21:50:29.197586",
+      "foods": [
+        "vegetable masala dosa",
+        "chili methi paratha",
+        "vegetable biryani with soy protein",
+        "spicy mushroom and tofu curry",
+        "curd vada with sambar",
+        "onion pakora",
+        "spicy tofu tacos",
+        "grilled tofu with hummus"
+      ]
+    },
+    {
+      "timestamp": "2025-10-17T21:54:40.275160",
+      "foods": [
+        "upma",
+        "masala dosa with sambar",
+        "paneer butter masala with brown rice",
+        "vegetable and tofu stir-fry with rice",
+        "palak pakora",
+        "pakoras",
+        "shorshe ilish bhorta",
+        "laal maas"
+      ]
+    },
+    {
+      "timestamp": "2025-10-17T21:55:05.501372",
+      "foods": [
+        "vegetable dosa",
+        "spinach (palak) paratha",
+        "dal bati churma",
+        "dal baati",
+        "onion pakora with chutney",
+        "chili pakora",
+        "grilled tofu with asparagus",
+        "grilled tofu wrap"
+      ]
+    },
+    {
+      "timestamp": "2025-10-17T21:55:14.218143",
+      "foods": [
+        "aloo-besan (potato and chickpea flour) paratha",
+        "pongal",
+        "chana dal and brown rice",
+        "vegetable and paneer curry",
+        "samosa",
+        "vegetable samosa",
+        "tofu and bell pepper stir fry",
+        "tempeh and tofu stir-fry"
+      ]
+    },
+    {
+      "timestamp": "2025-10-17T21:55:21.218733",
+      "foods": [
+        "masala dosa",
+        "masala dosa",
+        "palak and paneer wrap",
+        "grilled paneer with vegetables",
+        "curd vada",
+        "papdi chaat",
+        "vegetable quesadilla",
+        "dum gosht"
+      ]
+    },
+    {
+      "timestamp": "2025-10-17T21:55:28.705612",
+      "foods": [
+        "methi paratha",
+        "onion dosa",
+        "dal baati churma",
+        "biryani with raita",
+        "palak chaat",
+        "spinach pakora",
+        "vegan lentil soup with vegetables",
+        "chana and tofu salad"
+      ]
+    },
+    {
+      "timestamp": "2025-10-17T21:55:49.732816",
+      "foods": [
+        "masala dosa with chutney",
+        "saravana bhavan dosa",
+        "vegetable and chickpea biryani",
+        "tofu with brown rice and veggies",
+        "medu vada",
+        "chana usal",
+        "vegetable and tofu korma"
+      ]
+    },
+    {
+      "timestamp": "2025-10-17T21:59:00.345591",
+      "foods": [
+        "chickpea and avocado toast",
+        "vegetable paratha",
+        "paneer bhurji with quinoa",
+        "lobster malai curry",
+        "vegetable pakora with yogurt dip",
+        "tofu and chickpea burger",
+        "shorshe bata machher jhol"
+      ]
+    },
+    {
+      "timestamp": "2025-10-17T22:11:26.778836",
+      "foods": [
+        "vegetable frittata",
+        "curd paratha",
+        "hyderabadi biryani",
+        "paneer tikka",
+        "chana chaat with avocado",
+        "kosha mangsho",
+        "kosha mangsho"
+      ]
+    },
+    {
+      "timestamp": "2025-10-17T22:12:53.204067",
+      "foods": [
+        "keema paratha",
+        "palak paratha",
+        "chole bhature with soy protein",
+        "pakistani biryani",
+        "kadhi pakora",
+        "kadhi pakora",
+        "chickpea and vegetable patties",
+        "macher bhorta"
+      ]
+    },
+    {
+      "timestamp": "2025-10-17T22:16:29.832862",
+      "foods": [
+        "fulwadi",
+        "paneer and veggie stuffed paratha",
+        "paneer and chickpea curry",
+        "spicy chicken curry with rice",
+        "rasam vada",
+        "shorshe bata",
+        "tofu and veggie stir-fry"
+      ]
+    },
+    {
+      "timestamp": "2025-10-17T22:17:12.522468",
+      "foods": [
+        "aloo paratha",
+        "grilled tempeh with steamed veggies",
+        "masoor dal with amaranth",
+        "chicken korma with brown rice",
+        "dahi vada",
+        "murg pulao",
+        "tofu and broccoli stir-fry"
+      ]
+    },
+    {
+      "timestamp": "2025-10-17T22:33:38.828373",
+      "foods": [
+        "chickpea and avocado toast",
+        "grilled tempeh with steamed veggies",
+        "paneer and chickpea curry",
+        "chickpea and tofu salad",
+        "rasam vada",
+        "chana chaat with avocado",
+        "chickpea and vegetable patties",
+        "tofu and quinoa salad"
+      ]
+    },
+    {
+      "timestamp": "2025-10-17T22:34:29.617318",
+      "foods": [
+        "chickpea and avocado toast",
+        "grilled tempeh with steamed veggies",
+        "vegetable biryani with soy protein",
+        "chicken tikka with brown rice",
+        "vegetable pakora with yogurt dip",
+        "vada pav",
+        "chickpea and vegetable patties",
+        "vegetable protein-packed soup"
+      ]
+    }
+  ],
+  "excluded_foods": [
+    "jeera rice",
+    "chickpea and avocado toast",
+    "grilled tofu with hummus",
+    "spicy mushroom and tofu curry",
+    "vegetable paratha",
+    "vegetable quesadilla",
+    "curd paratha",
+    "murg pulao",
+    "tofu with brown rice and veggies",
+    "vegetable and tofu korma",
+    "grilled tempeh with steamed veggies",
+    "spinach (palak) paratha",
+    "vegan lentil soup with vegetables",
+    "tofu and broccoli stir-fry",
+    "chana chaat",
+    "onion dosa",
+    "pakoras",
+    "vada pav",
+    "chickpea and vegetable patties",
+    "chana usal",
+    "palak chaat",
+    "masala dosa with chutney",
+    "vegetable biryani with soy protein",
+    "macher bhorta",
+    "paneer butter masala with brown rice",
+    "vegetable pakora with yogurt dip",
+    "upma",
+    "saravana bhavan dosa",
+    "vegetable and chickpea biryani",
+    "kosha mangsho",
+    "lobster malai curry",
+    "palak pakora",
+    "keema paratha",
+    "tofu and veggie stir-fry",
+    "chili pakora",
+    "curd vada",
+    "palak paratha",
+    "papdi chaat",
+    "chili methi paratha",
+    "curd vada with sambar",
+    "spicy chicken curry with rice",
+    "kanji",
+    "fulwadi",
+    "masala dosa with sambar",
+    "dal bati churma",
+    "kadhi pakora",
+    "paneer bhurji with quinoa",
+    "onion pakora",
+    "tofu and chickpea burger",
+    "aloo paratha",
+    "batata vada",
+    "chana chaat with avocado",
+    "tofu and bell pepper stir fry",
+    "tofu and quinoa salad",
+    "dal baati churma",
+    "aloo-besan (potato and chickpea flour) paratha",
+    "paneer and chickpea curry",
+    "chana dal and brown rice",
+    "grilled tofu with asparagus",
+    "grilled tofu wrap",
+    "chicken korma with brown rice",
+    "hyderabadi biryani",
+    "chickpea and tofu salad",
+    "masoor dal",
+    "laal maas",
+    "medu vada",
+    "pongal",
+    "dum gosht",
+    "samosa",
+    "vegetable and tofu stir-fry with rice",
+    "spicy tofu tacos",
+    "masala dosa",
+    "onion pakora with chutney",
+    "pakistani biryani",
+    "dal baati",
+    "shorshe ilish bhorta",
+    "spinach pakora",
+    "shorshe bata machher jhol",
+    "paneer tikka",
+    "rasam vada",
+    "chole bhature with soy protein",
+    "vegetable and paneer curry",
+    "papad",
+    "vegetable samosa",
+    "grilled paneer with vegetables",
+    "palak and paneer wrap",
+    "tempeh and tofu stir-fry",
+    "shorshe bata",
+    "vegetable masala dosa",
+    "masoor dal with amaranth",
+    "methi paratha",
+    "biryani with raita",
+    "vegetable frittata",
+    "chana and tofu salad",
+    "vegetable dosa",
+    "dahi vada",
+    "idli",
+    "chicken tikka with brown rice",
+    "paneer and veggie stuffed paratha",
+    "vegetable protein-packed soup"
+  ]
+}
