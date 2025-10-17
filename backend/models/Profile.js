@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const nutritionSchema = require("./Nutrition");
+
 const profileSchema = new mongoose.Schema(
   {
     user: {
@@ -26,6 +28,7 @@ const profileSchema = new mongoose.Schema(
       default: "Moderate",
     },
     goals: { type: String, default: "" },
+    nutrition: nutritionSchema
   },
   { timestamps: true }
 );

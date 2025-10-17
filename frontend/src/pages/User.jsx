@@ -116,6 +116,17 @@ export default function User() {
         </div>
       </header>
 
+<section className="user-section">
+  <h3 className="section-title">Your Nutrition Requirements 🥗</h3>
+  <div className="nutrition-grid">
+    {profile.nutrition ? Object.entries(profile.nutrition).map(([key, value]) => (
+      <div key={key} className="nutrition-card">
+        <strong>{key}</strong>: {value}
+      </div>
+    )) : <p>Calculating...</p>}
+  </div>
+</section>
+
       {/* Main + Chat Container */}
       <div className="main-chat-wrapper" style={{ display: "flex" }}>
         <main className={`user-main ${chatOpen ? "chat-open" : ""}`}>

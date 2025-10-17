@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Specific Data Files
+ML/datasets/InDiet_Dataset.csv
