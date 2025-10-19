@@ -13,6 +13,8 @@ export default function User() {
   const [reviewText, setReviewText] = useState("");
   const [images, setImages] = useState([]);
   const [chatOpen, setChatOpen] = useState(false);
+  const [meals, setMeals] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -40,7 +42,7 @@ export default function User() {
         body: JSON.stringify({
           rating,
           reviewText,
-          images: [],
+          images: [], // You can extend this to upload images later
         }),
       });
 
@@ -72,6 +74,7 @@ export default function User() {
         const data = await res.json();
         if (res.ok) {
           setProfile(data);
+          setMeals(data.predictions?.slice(-1)[0]?.meals || null);
           if (data.conditions && data.conditions.length > 0 && data.conditions[0] !== "None") {
             setCondition(data.conditions[0]);
           }
@@ -86,18 +89,40 @@ export default function User() {
     fetchProfile();
   }, []);
 
-  if (!profile) return <p>Loading profile...</p>;
+  const handlePredict = async () => {
+    setLoading(true);
+    const token = localStorage.getItem("token");
+    if (!token) return;
 
-  const meals = {
-    breakfast: "Vegetable Upma + 1 boiled egg",
-    lunch: "Dal + Brown Rice + Salad",
-    snacks: "Sprouts Chaat",
-    dinner: "Roti + Paneer Bhurji + Stir-fry veggies",
+    try {
+      const res = await fetch("http://localhost:5000/api/profile/predict", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,  // ✅ fixed
+      },
+      body: JSON.stringify({}) // send an empty object if needed
+});
+
+      const data = await res.json();
+      if (res.ok) {
+        setMeals(data.meals);
+      } else {
+        console.error(data.msg);
+        alert("Prediction failed");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Server error");
+    } finally {
+      setLoading(false);
+    }
   };
+
+  if (!profile) return <p>Loading profile...</p>;
 
   return (
     <div className="user-app" style={{ position: "relative", minHeight: "100vh" }}>
-      {/* Header */}
       <header className="user-header">
         <div className="user-header-left">
           <h2>Welcome, {profile.name} 👋</h2>
@@ -105,7 +130,6 @@ export default function User() {
             Condition: <b>{condition}</b> | Goal: <b>{profile.goals || "Not set"}</b> | Age: <b>{profile.age}</b>
           </p>
         </div>
-
         <div className="nav-buttons">
           <button onClick={() => navigate("/user-profile")} className="profile-btn">
             👤 View Profile
@@ -116,111 +140,105 @@ export default function User() {
         </div>
       </header>
 
-<section className="user-section">
-  <h3 className="section-title">Your Nutrition Requirements 🥗</h3>
-  <div className="nutrition-grid">
-    {profile.nutrition ? Object.entries(profile.nutrition).map(([key, value]) => (
-      <div key={key} className="nutrition-card">
-        <strong>{key}</strong>: {value}
-      </div>
-    )) : <p>Calculating...</p>}
-  </div>
-</section>
+      {/* Nutrition Section */}
+      <section className="user-section">
+        <h3 className="section-title">Your Nutrition Requirements 🥗</h3>
+        <div className="nutrition-grid">
+          {profile.nutrition ? Object.entries(profile.nutrition).map(([key, value]) => (
+            <div key={key} className="nutrition-card">
+              <strong>{key}</strong>: {value}
+            </div>
+          )) : <p>Calculating...</p>}
+        </div>
+      </section>
 
-      {/* Main + Chat Container */}
-      <div className="main-chat-wrapper" style={{ display: "flex" }}>
-        <main className={`user-main ${chatOpen ? "chat-open" : ""}`}>
-          {/* Meals Section */}
-          <section className="user-section">
-            <h3 className="section-title">Today's Meals 🍽️</h3>
-            <div className="meal-grid">
-              {Object.entries(meals).map(([mealType, mealValue]) => (
+      {/* Meals Section with Prediction */}
+      <section className="user-section">
+        <h3 className="section-title">Today's Meals 🍽️</h3>
+        <button onClick={handlePredict} disabled={loading}>
+          {loading ? "Predicting..." : "Predict Meals"}
+        </button>
+        <div className="meal-grid">
+          {meals
+            ? Object.entries(meals).map(([mealType, mealItems]) => (
                 <div key={mealType} className="meal-card">
                   <h4 className="meal-type">{mealType}</h4>
-                  <p>{mealValue}</p>
+                  <p>{mealItems.join(", ") || "No recommendation"}</p>
                   <button className="chatbot-btn">View Recipe →</button>
                 </div>
-              ))}
-            </div>
-          </section>
+              ))
+            : <p>Click “Predict Meals” to see recommendations</p>}
+        </div>
+      </section>
 
-          {/* Hydration & Reminders */}
-          <section className="user-section">
-            <h3 className="section-title">Reminders ⏰</h3>
-            <div className="hydration">
-              <p className="label">💧 Hydration</p>
-              <p>
-                {water}/8 glasses drunk{" "}
-                <button onClick={() => setWater(water + 1)} className="add-btn">
-                  ➕ +1
-                </button>
-              </p>
-            </div>
-            <div className="meal-reminders">
-              <p className="label">🍱 Meal Times</p>
-              <ul>
-                <li>Breakfast – 9:00 AM</li>
-                <li>Lunch – 1:30 PM</li>
-                <li>Snacks – 5:00 PM</li>
-                <li>Dinner – 8:30 PM</li>
-              </ul>
-            </div>
-          </section>
-
-          {/* Feedback Section */}
-          <section className="user-section">
-            <h3 className="section-title">Share Your Feedback 💭</h3>
-
-            <div className="rating-stars">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <span
-                  key={star}
-                  className={star <= (hover || rating) ? "star filled" : "star"}
-                  onClick={() => setRating(star)}
-                  onMouseEnter={() => setHover(star)}
-                  onMouseLeave={() => setHover(0)}
-                >
-                  ★
-                </span>
-              ))}
-            </div>
-
-            <textarea
-              className="review-input"
-              placeholder="Write your review..."
-              rows="4"
-              value={reviewText}
-              onChange={(e) => setReviewText(e.target.value)}
-            ></textarea>
-
-            <input
-              type="file"
-              className="review-upload"
-              multiple
-              accept="image/*"
-              onChange={(e) => setImages([...e.target.files])}
-            />
-
-            <button className="submit-review-btn" onClick={handleReviewSubmit}>
-              📨 Submit Review
+      {/* Hydration & Reminders */}
+      <section className="user-section">
+        <h3 className="section-title">Reminders ⏰</h3>
+        <div className="hydration">
+          <p className="label">💧 Hydration</p>
+          <p>
+            {water}/8 glasses drunk{" "}
+            <button onClick={() => setWater(water + 1)} className="add-btn">
+              ➕ +1
             </button>
-          </section>
-        </main>
+          </p>
+        </div>
+        <div className="meal-reminders">
+          <p className="label">🍱 Meal Times</p>
+          <ul>
+            <li>Breakfast – 9:00 AM</li>
+            <li>Lunch – 1:30 PM</li>
+            <li>Snacks – 5:00 PM</li>
+            <li>Dinner – 8:30 PM</li>
+          </ul>
+        </div>
+      </section>
 
-        {/* Chatbot Panel */}
-        <div className={`chatbot-container ${chatOpen ? "open" : ""}`}>
-          <div className="chatbot-header">
-            <h4>💬 Chatbot</h4>
-            <button onClick={toggleChat}>✖</button>
-          </div>
-          <div className="chatbot-body">
-            <p>Hello! I’m here to help you with your meals and diet 🥗</p>
-            {/* Add chat messages or chatbot UI here */}
-          </div>
+      {/* Feedback Section */}
+      <section className="user-section">
+        <h3 className="section-title">Share Your Feedback 💭</h3>
+        <div className="rating-stars">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span
+              key={star}
+              className={star <= (hover || rating) ? "star filled" : "star"}
+              onClick={() => setRating(star)}
+              onMouseEnter={() => setHover(star)}
+              onMouseLeave={() => setHover(0)}
+            >
+              ★
+            </span>
+          ))}
+        </div>
+        <textarea
+          className="review-input"
+          placeholder="Write your review..."
+          rows="4"
+          value={reviewText}
+          onChange={(e) => setReviewText(e.target.value)}
+        ></textarea>
+        <input
+          type="file"
+          className="review-upload"
+          multiple
+          accept="image/*"
+          onChange={(e) => setImages([...e.target.files])}
+        />
+        <button className="submit-review-btn" onClick={handleReviewSubmit}>
+          📨 Submit Review
+        </button>
+      </section>
+
+      {/* Chatbot */}
+      <div className={`chatbot-container ${chatOpen ? "open" : ""}`}>
+        <div className="chatbot-header">
+          <h4>💬 Chatbot</h4>
+          <button onClick={toggleChat}>✖</button>
+        </div>
+        <div className="chatbot-body">
+          <p>Hello! I’m here to help you with your meals and diet 🥗</p>
         </div>
       </div>
-
-      {/* Floating Chatbot Button */}
       {!chatOpen && (
         <button className="chatbot-toggle-btn" onClick={toggleChat}>
           💬 Chat

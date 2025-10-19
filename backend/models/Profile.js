@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-
-const nutritionSchema = require("./Nutrition");
+const nutritionSchema = require("./nutrition"); // your nutrition schema
+const predictionSchema = require("./prediction"); // prediction schema (exported as schema, not model)
 
 const profileSchema = new mongoose.Schema(
   {
@@ -28,7 +28,8 @@ const profileSchema = new mongoose.Schema(
       default: "Moderate",
     },
     goals: { type: String, default: "" },
-    nutrition: nutritionSchema
+    nutrition: nutritionSchema,
+    predictions: [predictionSchema], // Array of embedded predictions
   },
   { timestamps: true }
 );

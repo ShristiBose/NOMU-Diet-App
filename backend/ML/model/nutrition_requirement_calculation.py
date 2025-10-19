@@ -39,21 +39,76 @@ def calculate_nutrition_requirements(age, gender, height_cm, weight_kg,
 
     # --- 5️⃣ Disease-specific modifications ---
     disease = disease.lower()
+    
     if disease == "diabetes":
         carb_g *= 0.85
         protein_g *= 1.1
         fiber_g += 5
         free_sugar_g *= 0.5
+
     elif disease == "hypertension":
         fat_g *= 0.9
         cholesterol_mg *= 0.8
+
     elif disease == "hyperlipidemia":
         fat_g *= 0.8
         cholesterol_mg *= 0.6
+
     elif disease == "pcos":
         protein_g *= 1.15
         carb_g *= 0.85
         fiber_g += 5
+
+    elif disease == "thyroid disorders":
+        # Hypothyroidism may need slightly higher protein and energy
+        protein_g *= 1.05
+
+    elif disease == "obesity":
+        TDEE *= 0.9
+        carb_g *= 0.9
+        fat_g *= 0.9
+
+    elif disease == "underweight":
+        TDEE *= 1.1
+        protein_g *= 1.1
+        fat_g *= 1.1
+
+    elif disease == "heart disease":
+        fat_g *= 0.75
+        cholesterol_mg *= 0.6
+
+    elif disease == "kidney disease":
+        protein_g *= 0.8  # depending on stage, protein may be restricted
+        sodium_mg = 1500  # can add as an extra output if needed
+
+    elif disease == "liver disease":
+        protein_g *= 0.85  # mild restriction
+        fat_g *= 0.85
+
+    elif disease == "celiac disease":
+        # gluten-free: no macro adjustment, just note restriction
+        pass
+
+    elif disease == "lactose intolerance":
+        # avoid dairy; no macro adjustment
+        pass
+
+    elif disease == "anemia":
+        iron_mg = 18  # can add as extra output
+        protein_g *= 1.1
+
+    elif disease == "gastrointestinal disorders":
+        fiber_g *= 0.75  # if sensitive, reduce fiber
+        fat_g *= 0.9
+
+    elif disease == "pregnancy":
+        TDEE *= 1.2
+        protein_g *= 1.2
+        iron_mg = 27
+        folate_mcg = 400
+
+    elif disease == "other" or disease == "none":
+        pass  # no changes
 
     # --- 6️⃣ Round and return ---
     results = {
@@ -67,6 +122,16 @@ def calculate_nutrition_requirements(age, gender, height_cm, weight_kg,
         "free_sugar_g": round(free_sugar_g, 2),
         "cholesterol_mg": round(cholesterol_mg, 2)
     }
+
+    # Add optional extra nutrients if applicable
+    if disease in ["kidney disease"]:
+        results["sodium_mg"] = sodium_mg
+    if disease in ["anemia"]:
+        results["iron_mg"] = iron_mg
+    if disease in ["pregnancy"]:
+        results["iron_mg"] = iron_mg
+        results["folate_mcg"] = folate_mcg
+
     return results
 
 

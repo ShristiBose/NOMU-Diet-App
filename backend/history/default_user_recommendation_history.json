@@ -1,0 +1,153 @@
+{
+  "runs": [
+    {
+      "timestamp": "2025-10-19T18:35:12.865946",
+      "foods": [
+        "ragi dosa",
+        "khaman dhokla",
+        "masoor dal",
+        "south indian lemon rice",
+        "chana chaat",
+        "vegetable pakora",
+        "khichdi",
+        "methi thepla"
+      ]
+    },
+    {
+      "timestamp": "2025-10-19T18:45:49.554566",
+      "foods": [
+        "chickpea and avocado toast",
+        "moong dal chilla",
+        "vegetable and tofu stir-fry with rice",
+        "avocado and quinoa salad",
+        "pakoras",
+        "vada pav",
+        "tofu stir-fry with vegetables",
+        "grilled tofu with quinoa"
+      ]
+    },
+    {
+      "timestamp": "2025-10-19T18:51:34.502534",
+      "foods": [
+        "keema paratha",
+        "vegetable masala dosa",
+        "dal baati churma",
+        "dal bati churma",
+        "vegetable pakora with yogurt dip",
+        "kadhi pakora",
+        "vegetable quesadilla",
+        "masala baati"
+      ]
+    },
+    {
+      "timestamp": "2025-10-19T18:51:37.753356",
+      "foods": [
+        "fulwadi",
+        "idli sambar",
+        "chole bhature",
+        "dal baati",
+        "palak chaat",
+        "chana chaat with avocado",
+        "kerala sadya",
+        "chana usal"
+      ]
+    },
+    {
+      "timestamp": "2025-10-19T18:53:36.614712",
+      "foods": [
+        "aloo paratha",
+        "kara dosa",
+        "chana biryani",
+        "south indian curry",
+        "batata vada",
+        "medu vada with sambar",
+        "malai kofta",
+        "dum aloo"
+      ]
+    },
+    {
+      "timestamp": "2025-10-19T18:55:43.239545",
+      "foods": [
+        "chili methi paratha",
+        "masala dosa with sambar",
+        "vegetable masala biryani",
+        "hyderabadi biryani",
+        "rasam vada",
+        "medu vada with coconut chutney",
+        "bisi bele bath",
+        "kachori"
+      ]
+    },
+    {
+      "timestamp": "2025-10-19T18:59:45.227899",
+      "foods": [
+        "vegetable dosa with sambar",
+        "paneer and veggie stuffed paratha",
+        "pakistani biryani",
+        "biryani with raita",
+        "pakora",
+        "dahi vada",
+        "biriyani",
+        "saag"
+      ]
+    }
+  ],
+  "excluded_foods": [
+    "vegetable and tofu stir-fry with rice",
+    "vegetable masala dosa",
+    "pakoras",
+    "grilled tofu with quinoa",
+    "vegetable pakora with yogurt dip",
+    "kerala sadya",
+    "kara dosa",
+    "medu vada with coconut chutney",
+    "batata vada",
+    "khichdi",
+    "chana chaat",
+    "dal baati churma",
+    "dum aloo",
+    "biryani with raita",
+    "vegetable quesadilla",
+    "masala dosa with sambar",
+    "chana chaat with avocado",
+    "moong dal chilla",
+    "vegetable masala biryani",
+    "masala baati",
+    "saag",
+    "palak chaat",
+    "keema paratha",
+    "pakora",
+    "chickpea and avocado toast",
+    "vegetable dosa with sambar",
+    "paneer and veggie stuffed paratha",
+    "aloo paratha",
+    "vegetable pakora",
+    "chana usal",
+    "dal bati churma",
+    "methi thepla",
+    "ragi dosa",
+    "bisi bele bath",
+    "chole bhature",
+    "malai kofta",
+    "chili methi paratha",
+    "rasam vada",
+    "avocado and quinoa salad",
+    "vada pav",
+    "kadhi pakora",
+    "dahi vada",
+    "idli sambar",
+    "south indian lemon rice",
+    "chana biryani",
+    "fulwadi",
+    "masoor dal",
+    "medu vada with sambar",
+    "hyderabadi biryani",
+    "kachori",
+    "khaman dhokla",
+    "pakistani biryani",
+    "biriyani",
+    "tofu stir-fry with vegetables",
+    "south indian curry",
+    "dal baati"
+  ]
+}
