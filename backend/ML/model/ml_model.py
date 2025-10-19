@@ -14,6 +14,18 @@ try:
     user_id = user_profile.get("user_id", "default_user")
     print(f"[DEBUG] Loaded user_profile for user_id: {user_id}", file=sys.stderr)
 
+    # ✅ Normalize allergies field to always be a list
+    allergies_raw = user_profile.get("allergies", [])
+    if isinstance(allergies_raw, str):
+        # Split comma-separated string and remove extra spaces
+        allergies_list = [a.strip() for a in allergies_raw.split(",") if a.strip()]
+    elif isinstance(allergies_raw, list):
+        allergies_list = [str(a).strip() for a in allergies_raw if a]
+    else:
+        allergies_list = []
+    user_profile["allergies"] = allergies_list
+    print(f"[DEBUG] Processed allergies: {user_profile['allergies']}", file=sys.stderr)
+
     # -------------------- 1. History management --------------------
     HISTORY_DIR = "history"
     os.makedirs(HISTORY_DIR, exist_ok=True)
@@ -124,6 +136,7 @@ try:
                 "Sesame": "contains_sesame", "Sugar restrictions": None
             }
             mask = pd.Series(True, index=df.index)
+            
             for allergy in profile.get("allergies", []):
                 col = allergy_map.get(allergy)
                 if col:
