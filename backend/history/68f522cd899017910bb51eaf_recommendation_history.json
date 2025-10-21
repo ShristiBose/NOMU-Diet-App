@@ -1,0 +1,174 @@
+{
+  "runs": [
+    {
+      "timestamp": "2025-10-19T23:12:51.149290",
+      "foods": [
+        "keema paratha",
+        "fulwadi",
+        "dal baati churma",
+        "chettinad mutton biryani",
+        "vegetable pakora with yogurt dip",
+        "palak chaat",
+        "meethi khichdi",
+        "khichdi"
+      ]
+    },
+    {
+      "timestamp": "2025-10-19T23:12:54.669092",
+      "foods": [
+        "chickpea and avocado toast",
+        "vegetable masala dosa",
+        "dal bati churma",
+        "hyderabadi biryani",
+        "kadhi pakora",
+        "vada pav",
+        "masala baati",
+        "vegetable quesadilla"
+      ]
+    },
+    {
+      "timestamp": "2025-10-19T23:14:21.398535",
+      "foods": [
+        "paratha with green chutney",
+        "upma",
+        "curd bhature",
+        "vegetable biryani",
+        "vegetable pakora",
+        "rasam vada",
+        "vegetable pulao",
+        "masala khichdi"
+      ]
+    },
+    {
+      "timestamp": "2025-10-19T23:14:24.752417",
+      "foods": [
+        "chili methi paratha",
+        "chili dosa",
+        "pakistani biryani",
+        "mutton biryani",
+        "medu vada with coconut chutney",
+        "chana chaat",
+        "biriyani",
+        "undhiyu"
+      ]
+    },
+    {
+      "timestamp": "2025-10-21T18:25:59.229976",
+      "foods": [
+        "vegetable dosa with sambar",
+        "aloo paratha",
+        "dal baati",
+        "chole bhature",
+        "chana chaat with avocado",
+        "pakora",
+        "kerala sadya",
+        "veg pulao"
+      ]
+    },
+    {
+      "timestamp": "2025-10-21T18:26:02.363215",
+      "foods": [
+        "masala dosa with sambar",
+        "moong dal chilla",
+        "chana biryani",
+        "south indian curry",
+        "dahi vada",
+        "curd vada with sambar",
+        "rajma chawal",
+        "mixed vegetable pulao"
+      ]
+    },
+    {
+      "timestamp": "2025-10-21T18:29:17.760119",
+      "foods": [
+        "saravana bhavan dosa",
+        "kara dosa",
+        "vegetable masala biryani",
+        "biryani with raita",
+        "batata vada",
+        "vegetable samosa",
+        "bengali sweets platter",
+        "puliyodarai"
+      ]
+    },
+    {
+      "timestamp": "2025-10-21T18:29:20.353897",
+      "foods": [
+        "methi paratha",
+        "palak paratha",
+        "biryani",
+        "vegetable pulao with tofu",
+        "medu vada with sambar",
+        "onion pakora with chutney",
+        "saag",
+        "dum aloo"
+      ]
+    }
+  ],
+  "excluded_foods": [
+    "veg pulao",
+    "aloo paratha",
+    "biryani with raita",
+    "chickpea and avocado toast",
+    "vegetable quesadilla",
+    "mutton biryani",
+    "meethi khichdi",
+    "chana chaat",
+    "masala baati",
+    "curd bhature",
+    "dal bati churma",
+    "medu vada with sambar",
+    "palak chaat",
+    "khichdi",
+    "vegetable biryani",
+    "curd vada with sambar",
+    "kara dosa",
+    "kadhi pakora",
+    "bengali sweets platter",
+    "vegetable pulao with tofu",
+    "vegetable pulao",
+    "biriyani",
+    "chana chaat with avocado",
+    "batata vada",
+    "chana biryani",
+    "saag",
+    "chole bhature",
+    "rasam vada",
+    "vada pav",
+    "south indian curry",
+    "biryani",
+    "dal baati",
+    "masala khichdi",
+    "methi paratha",
+    "dal baati churma",
+    "chettinad mutton biryani",
+    "undhiyu",
+    "onion pakora with chutney",
+    "masala dosa with sambar",
+    "saravana bhavan dosa",
+    "kerala sadya",
+    "vegetable pakora with yogurt dip",
+    "medu vada with coconut chutney",
+    "vegetable pakora",
+    "vegetable samosa",
+    "vegetable dosa with sambar",
+    "moong dal chilla",
+    "hyderabadi biryani",
+    "fulwadi",
+    "dahi vada",
+    "rajma chawal",
+    "pakistani biryani",
+    "vegetable masala biryani",
+    "dum aloo",
+    "chili dosa",
+    "chili methi paratha",
+    "vegetable masala dosa",
+    "puliyodarai",
+    "upma",
+    "palak paratha",
+    "keema paratha",
+    "pakora",
+    "mixed vegetable pulao",
+    "paratha with green chutney"
+  ]
+}

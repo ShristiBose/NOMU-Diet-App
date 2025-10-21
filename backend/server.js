@@ -7,7 +7,6 @@ const authRoutes = require('./routes/authRoutes.js'); // Add this line
 const profileRoutes = require('./routes/profileRoute.js');
 const reviewRoutes = require('./routes/reviewRoute.js');
 const predictRoutes = require('./routes/predictRoute.js');
-const chatRoutes = require('./routes/chatRoutes.js'); // make sure filename matches
 
 console.log('Mongo URI:', process.env.MONGO_URI); // debug
 
@@ -19,7 +18,6 @@ app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/chat', chatRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/review', reviewRoutes);
 app.use('/api/profile/predict', predictRoutes);
