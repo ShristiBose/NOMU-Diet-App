@@ -514,7 +514,17 @@ body {
   }
 }
 
-/* -------------------- Auth Pages -------------------- */
+
+
+
+
+
+/* ----------------------------------------------------------- Auth Pages ------------------------------------------------------------ */
+
+
+
+
+
 .auth-page {
   display: flex;
   justify-content: center;
@@ -616,7 +626,15 @@ body {
 }
 
 
-/* -------------------- Profile Page -------------------- */
+
+
+
+/* ----------------------------------------------------- PROFILE PAGE ---------------------------------------------------------- */
+
+
+
+
+
 .profile-main {
   flex: 1;
   max-width: 800px;
@@ -725,25 +743,27 @@ body {
 
 
 
-/* -------------------- Enhanced User Page -------------------- */
+
+
+
+/* ----------------------------------------------------- USER PAGE ---------------------------------------------------------- */
 
 /* User Header */
 .user-header {
   display: flex;
-  justify-content: space-between; /* left and right aligned */
-  align-items: center;             /* vertically center items */
+  justify-content: space-between;
+  align-items: center;
   background: #15803d;
   color: white;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 3rem;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   animation: slideDown 0.8s ease;
-  flex-wrap: wrap; /* ensures mobile responsiveness */
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
-/* Left Side: Text Info */
 .user-header-left h2 {
   font-size: 1.8rem;
   font-weight: 700;
@@ -756,45 +776,27 @@ body {
   opacity: 0.9;
 }
 
-/* Buttons */
 .nav-buttons {
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex-shrink: 0; /* prevent buttons from shrinking */
+  flex-shrink: 0;
 }
 
-.profile-btn {
+.profile-btn, .logout-btn {
   background-color: #f0fdf4;
   color: #16a34a;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.6rem;
   border: none;
   cursor: pointer;
   font-size: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  transition: all 0.3s ease;
 }
 
-.profile-btn:hover {
+.profile-btn:hover, .logout-btn:hover {
   background-color: #f3f4f6;
-  transform: scale(1.05);
-}
-
-.logout-btn {
-  background-color: #f0fdf4;
-  color: #16a34a;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.logout-btn:hover {
-  background-color: #f0fdf4;
   transform: scale(1.05);
 }
 
@@ -811,137 +813,182 @@ body {
   }
 }
 
+/* Wrapper for Main Content + Chatbot */
+.main-chat-wrapper {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 160px); /* header + footer */
+  gap: 2rem;
+  padding: 2rem;
+  box-sizing: border-box;
+}
 
-
-/* -------------------- Sections -------------------- */
+/* Main User Content */
 .user-main {
-padding: 2rem 1rem;
-max-width: 1200px;
-margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
+/* User Sections */
 .user-section {
-background: white;
-padding: 1.8rem;
-margin-bottom: 2rem;
-border-radius: 1rem;
-box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-animation: fadeUp 0.9s ease;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.user-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+/* Section Titles */
 .section-title {
-font-size: 1.4rem;
-font-weight: 600;
-margin-bottom: 1rem;
-color: #065f46;
-border-left: 4px solid #16a34a;
-padding-left: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #065f46;
+  border-left: 4px solid #16a34a;
+  padding-left: 0.7rem;
 }
 
-
-.dropdown:focus {
-border-color: #16a34a;
-box-shadow: 0 0 6px rgba(22,163,74,0.4);
-outline: none;
-}
-
-/* -------------------- Meal Cards -------------------- */
+/* Meal Grid */
 .meal-grid {
-display: grid;
-gap: 1.5rem;
-grid-template-columns: 1fr;
+  display: grid;
+  gap: 1.8rem;
+  grid-template-columns: 1fr;
 }
 
 @media (min-width: 768px) {
-.meal-grid {
-grid-template-columns: repeat(2, 1fr);
-}
+  .meal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .meal-card {
-background: #f0fdf4; /* soft green background */
-border-radius: 0.8rem;
-padding: 1.2rem;
-box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-transition: all 0.3s ease;
-animation: scaleUp 0.6s ease;
+  background: #f0fdf4;
+  padding: 1.8rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .meal-card:hover {
-transform: translateY(-5px);
-box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
 }
 
 .meal-type {
-font-size: 1.1rem;
-font-weight: 700;
-color: #065f46;
-margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #065f46;
 }
 
 .chatbot-btn {
-margin-top: 0.7rem;
-font-size: 0.9rem;
-font-weight: 500;
-color: #16a34a;
-background: #ecfdf5;
-border: 1px solid #16a34a;
-border-radius: 0.5rem;
-padding: 0.5rem 1rem;
-transition: all 0.3s;
-}
-
-.chatbot-btn:hover {
-background: #16a34a;
-color: white;
-transform: scale(1.05);
-}
-
-/* -------------------- Hydration & Reminders -------------------- */
-.hydration {
-background: #ecfdf5;
-padding: 1rem;
-border-radius: 0.8rem;
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-
-.add-btn {
-background: #16a34a;
-color: white;
-padding: 0.4rem 0.8rem;
-border-radius: 0.4rem;
-font-size: 0.9rem;
-transition: transform 0.2s ease, background 0.3s ease;
-}
-
-.add-btn:hover {
-background: #15803d;
-transform: scale(1.1);
-}
-
-/* Meal Reminders */
-.meal-reminders ul {
-margin: 0.5rem 0 0 1.2rem;
-color: #4b5563;
-font-size: 0.95rem;
-}
-
-.rating-stars {
-  display: flex;
-  gap: 0.3rem;
-  font-size: 2rem;
+  margin-top: auto;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #16a34a;
+  background: #ecfdf5;
+  border: 1px solid #16a34a;
+  border-radius: 0.6rem;
+  padding: 0.7rem 1.2rem;
+  transition: all 0.3s;
   cursor: pointer;
 }
 
+.chatbot-btn:hover {
+  background: #16a34a;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* -------------------- Nutrition Section -------------------- */
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+  align-items: stretch;
+  padding: 0.5rem 0;
+}
+
+.nutrition-card {
+  background: #f0fdf4; /* same as meal-card */
+  padding: 1.2rem;
+  border-radius: 0.9rem;
+  width: 100%;
+  max-width: 160px;
+  text-align: center;
+  font-weight: 500;
+  color: #065f46;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nutrition-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.nutrition-card .nutrient-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+/* Hydration Section */
+.hydration {
+  background: #ecfdf5;
+  padding: 1.2rem 1.5rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.add-btn {
+  background: #16a34a;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 0.6rem;
+  font-size: 0.95rem;
+  transition: transform 0.2s ease, background 0.3s ease;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #15803d;
+  transform: scale(1.1);
+}
+
+/* Feedback Section */
+.rating-stars {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
 .star {
-  color: #d1d5db; /* gray default */
+  color: #d1d5db;
   transition: color 0.2s ease;
 }
 
 .star.filled {
-  color: #facc15; /* yellow when active */
+  color: #facc15;
 }
 
 .review-input {
@@ -960,12 +1007,13 @@ font-size: 0.95rem;
 .submit-review-btn {
   background: #16a34a;
   color: white;
-  padding: 0.6rem 1.2rem;
+  padding: 0.7rem 1.4rem;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.6rem;
   cursor: pointer;
   font-size: 1rem;
-  transition: background 0.3s ease, transform 0.2s ease;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .submit-review-btn:hover {
@@ -973,27 +1021,192 @@ font-size: 0.95rem;
   transform: scale(1.05);
 }
 
-
-
-/* -------------------- Animations -------------------- */
-@keyframes fadeUp {
-from { opacity: 0; transform: translateY(20px); }
-to { opacity: 1; transform: translateY(0); }
+.section-header-with-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem; /* space below */
+  flex-wrap: wrap; /* mobile responsive */
 }
 
-@keyframes slideDown {
-from { opacity: 0; transform: translateY(-20px); }
-to { opacity: 1; transform: translateY(0); }
+.section-header-with-button .profile-btn {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-@keyframes scaleUp {
-from { opacity: 0; transform: scale(0.9); }
-to { opacity: 1; transform: scale(1); }
+.section-header-with-button .profile-btn:hover {
+  background-color: #f3f4f6;
+  transform: scale(1.05);
+}
+
+/* ---------- Chatbot Panel------------- */ 
+.chatbot-container { 
+  position: fixed; 
+  bottom: 0; 
+  right: 2rem; 
+  width: 0; 
+  height: 50vh; 
+  background: #f0fdf4; 
+  border-radius: 1rem 1rem 0 0; 
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15); 
+  overflow: hidden; 
+  transition: width 0.3s ease; 
+  z-index: 1000; 
+  display: flex; 
+  flex-direction: column; 
+}
+.chatbot-container.open { 
+  width: 350px; 
+}
+
+.chatbot-header { 
+  background: #16a34a; 
+  color: white; 
+  padding: 1rem; 
+  font-weight: 600; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  border-top-left-radius: 1rem; 
+  border-top-right-radius: 1rem; 
+}
+
+.chatbot-body { 
+  padding: 1rem; 
+  overflow-y: auto; 
+  flex: 1; 
+}
+
+/* Floating Chatbot Button */ 
+.chatbot-toggle-btn { 
+  position: fixed; 
+  bottom: 2rem; 
+  right: 2rem; 
+  background: #16a34a; 
+  color: white; 
+  padding: 0.9rem 1.2rem; 
+  border-radius: 50px; 
+  font-size: 1.2rem; 
+  cursor: pointer; 
+  box-shadow: 0 5px 18px rgba(0,0,0,0.25); 
+  z-index: 1100; 
+  transition: transform 0.3s ease, background 0.3s ease; 
+}
+
+.chatbot-toggle-btn:hover { 
+  background: #15803d; 
+  transform: scale(1.1); 
+}
+
+/* ---------- Chatbot Messages and Input------------- */ 
+.chatbot-messages { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 0.5rem; 
+  max-height: calc(50vh - 90px); /* leave space for input */ 
+  overflow-y: auto; 
+  padding-right: 0.5rem; 
+}
+/* Scrollbar styling */ 
+.chatbot-messages::-webkit-scrollbar { 
+  width: 6px; 
+} 
+
+.chatbot-messages::-webkit-scrollbar-thumb { 
+  background-color: rgba(0,0,0,0.2); 
+  border-radius: 3px; 
+}
+
+/* Bot message */ 
+.bot-msg { 
+  align-self: flex-start; 
+  background: #dcfce7; 
+  color: #166534; 
+  padding: 0.5rem 1rem; 
+  border-radius: 1rem 1rem 1rem 0; 
+  max-width: 80%; 
+  word-wrap: break-word; 
+  font-size: 0.9rem; 
+} 
+/* User message */ 
+.user-msg { 
+  align-self: flex-end; 
+  background: #16a34a; 
+  color: white; 
+  padding: 0.5rem 1rem; 
+  border-radius: 1rem 1rem 0 1rem; 
+  max-width: 80%; 
+  word-wrap: break-word; 
+  font-size: 0.9rem; 
+} 
+/* Input Container */ 
+.chatbot-input-container { 
+  display: flex; 
+  gap: 0.5rem; 
+  margin-top: 0.5rem; 
+  padding-top: 0.5rem; 
+  border-top: 1px solid #d1fae5; 
+}
+
+/* Input box */ 
+.chatbot-input-container input { 
+  flex: 1; 
+  padding: 0.5rem 1rem; 
+  border-radius: 50px; 
+  border: 1px solid #16a34a; 
+  outline: none; 
+  font-size: 0.9rem; 
+  transition: border 0.2s ease; 
+}
+
+.chatbot-input-container input:focus { 
+  border-color: #15803d; 
+} 
+/* Send button */ 
+.chatbot-input-container button { 
+  background: #16a34a; 
+  color: white; 
+  border: none; 
+  padding: 0 1rem; 
+  border-radius: 50px; 
+  cursor: pointer; 
+  transition: background 0.2s ease, transform 0.2s ease; 
+}
+
+.chatbot-input-container button:hover { 
+  background: #15803d; 
+  transform: scale(1.05); 
+} 
+/* Responsive Adjustments */ 
+@media (max-width: 768px) { 
+  .meal-grid { 
+    grid-template-columns: 1fr; 
+  } 
+  .main-chat-wrapper { 
+    flex-direction: column; 
+    padding: 1rem; 
+  } 
+  .chatbot-container.open { 
+    width: 90%; right: 5%; 
+  } 
 }
 
 
 
-/* -------------------- User Profile Page -------------------- */
+
+/* ----------------------------------------------------- USER PROFILE PAGE ---------------------------------------------------------- */
+
+
+
+
+
 .profile-page {
   flex: 1;
   
@@ -1115,7 +1328,16 @@ to { opacity: 1; transform: scale(1); }
 }
 
 
-/* -------------------- Dashboard Page -------------------- */
+
+
+
+
+
+/* ----------------------------------------------------- Dashboard Page ---------------------------------------------------------- */
+
+
+
+
 .dashboard-charts {
   display: flex;
   flex-direction: column;
@@ -1144,94 +1366,3 @@ to { opacity: 1; transform: scale(1); }
 }
 
 
-/* Chatbot Toggle Button */
-.chatbot-toggle-btn {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background: #16a34a;
-  color: white;
-  padding: 0.8rem 1rem;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease, background 0.3s ease;
-  z-index: 1000;
-}
-.chatbot-toggle-btn:hover {
-  transform: scale(1.1);
-  background: #15803d;
-}
-
-/* Wrapper for Main + Chat to stay between header and footer */
-.main-chat-wrapper {
-  display: flex;
-  flex: 1;
-  min-height: calc(100vh - 120px); /* adjust if header + footer height differs */
-}
-
-/* Main Content */
-.user-main {
-  flex: 1;
-  transition: width 0.3s ease;
-}
-
-/* Chatbot Panel */
-.chatbot-container {
-  width: 0;
-  background: #f0fdf4;
-  overflow: hidden;
-  transition: width 0.3s ease;
-  border-left: 1px solid #ccc;
-}
-.chatbot-container.open {
-  width: 350px; /* fixed width so it doesn't cover header/footer */
-}
-
-/* Chatbot Header */
-.chatbot-header {
-  background: #16a34a;
-  color: white;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Chatbot Body */
-.chatbot-body {
-  padding: 1rem;
-  height: calc(100% - 60px); /* subtract header height */
-  overflow-y: auto;
-}
-
-/* Floating Button */
-.chatbot-toggle-btn {
-  position: fixed;
-  bottom: 3rem;
-  right: 2rem;
-  background: #16a34a;
-  color: white;
-  padding: 0.8rem 1rem;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-}
-
-
-.nutrition-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.nutrition-card {
-  background: #f4f4f4;
-  padding: 10px;
-  border-radius: 8px;
-  width: 120px;
-  text-align: center;
-}

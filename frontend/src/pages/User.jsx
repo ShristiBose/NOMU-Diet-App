@@ -16,6 +16,11 @@ export default function User() {
   const [meals, setMeals] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const [chatInput, setChatInput] = useState("");
+  const [chatMessages, setChatMessages] = useState([
+    { sender: "bot", text: "Hello! I’m here to help you with your meals and diet 🥗" },
+  ]);
+
   const navigate = useNavigate();
 
   const toggleChat = () => setChatOpen(!chatOpen);
@@ -96,13 +101,13 @@ export default function User() {
 
     try {
       const res = await fetch("http://localhost:5000/api/profile/predict", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,  // ✅ fixed
-      },
-      body: JSON.stringify({}) // send an empty object if needed
-});
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({}),
+      });
 
       const data = await res.json();
       if (res.ok) {
@@ -117,6 +122,24 @@ export default function User() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSendMessage = () => {
+    if (!chatInput.trim()) return;
+
+    // Add user message
+    setChatMessages([...chatMessages, { sender: "user", text: chatInput }]);
+
+    // Clear input
+    setChatInput("");
+
+    // Example bot reply (replace with API call)
+    setTimeout(() => {
+      setChatMessages(prev => [
+        ...prev,
+        { sender: "bot", text: "Thanks for your message! I will get back to you with suggestions." },
+      ]);
+    }, 500);
   };
 
   if (!profile) return <p>Loading profile...</p>;
@@ -146,7 +169,7 @@ export default function User() {
         <div className="nutrition-grid">
           {profile.nutrition ? Object.entries(profile.nutrition).map(([key, value]) => (
             <div key={key} className="nutrition-card">
-              <strong>{key}</strong>: {value}
+              <strong>{key}</strong> {value}
             </div>
           )) : <p>Calculating...</p>}
         </div>
@@ -154,17 +177,19 @@ export default function User() {
 
       {/* Meals Section with Prediction */}
       <section className="user-section">
-        <h3 className="section-title">Today's Meals 🍽️</h3>
-        <button onClick={handlePredict} disabled={loading}>
-          {loading ? "Predicting..." : "Predict Meals"}
-        </button>
+        <div className="section-header-with-button">
+          <h3 className="section-title">Today's Meals 🍽️</h3>
+          <button className="logout-btn" onClick={handlePredict} disabled={loading}>
+            {loading ? "Predicting..." : "Predict Meals"}
+          </button>
+        </div>
         <div className="meal-grid">
           {meals
             ? Object.entries(meals).map(([mealType, mealItems]) => (
                 <div key={mealType} className="meal-card">
                   <h4 className="meal-type">{mealType}</h4>
                   <p>{mealItems.join(", ") || "No recommendation"}</p>
-                  <button className="chatbot-btn">View Recipe →</button>
+                  <button className="chatbot-btn">Ask Chatbot if you want the recipe or if you don't like the sugesstion →</button>
                 </div>
               ))
             : <p>Click “Predict Meals” to see recommendations</p>}
@@ -236,7 +261,25 @@ export default function User() {
           <button onClick={toggleChat}>✖</button>
         </div>
         <div className="chatbot-body">
-          <p>Hello! I’m here to help you with your meals and diet 🥗</p>
+          <div className="chatbot-messages">
+            {chatMessages.map((msg, idx) => (
+              <p key={idx} className={msg.sender === "bot" ? "bot-msg" : "user-msg"}>
+                {msg.text}
+              </p>
+            ))}
+          </div>
+          <div className="chatbot-input-container">
+            <input
+              type="text"
+              placeholder="Type your message..."
+              value={chatInput}
+              onChange={(e) => setChatInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleSendMessage();
+              }}
+            />
+            <button onClick={handleSendMessage}>Send</button>
+          </div>
         </div>
       </div>
       {!chatOpen && (

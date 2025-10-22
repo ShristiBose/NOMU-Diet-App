@@ -164,10 +164,10 @@ try:
 
     # -------------------- 7. Generate meals --------------------
     meals = {
-        "breakfast": recommend_top_foods(user_profile, df_food, model, "breakfast")["food_name"].tolist(),
-        "lunch": recommend_top_foods(user_profile, df_food, model, "lunch")["food_name"].tolist(),
-        "snacks": recommend_top_foods(user_profile, df_food, model, "snacks")["food_name"].tolist(),
-        "dinner": recommend_top_foods(user_profile, df_food, model, "dinner")["food_name"].tolist()
+        "Breakfast": recommend_top_foods(user_profile, df_food, model, "breakfast")["food_name"].tolist(),
+        "Lunch": recommend_top_foods(user_profile, df_food, model, "lunch")["food_name"].tolist(),
+        "Snacks": recommend_top_foods(user_profile, df_food, model, "snacks")["food_name"].tolist(),
+        "Dinner": recommend_top_foods(user_profile, df_food, model, "dinner")["food_name"].tolist()
     }
 
     # -------------------- 8. Update history --------------------
