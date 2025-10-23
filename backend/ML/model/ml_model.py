@@ -1,4 +1,4 @@
-import sys
+import sys 
 import json
 import os
 import pandas as pd
@@ -6,6 +6,8 @@ import numpy as np
 from datetime import datetime
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import traceback
 
 try:
@@ -17,7 +19,6 @@ try:
     # ✅ Normalize allergies field to always be a list
     allergies_raw = user_profile.get("allergies", [])
     if isinstance(allergies_raw, str):
-        # Split comma-separated string and remove extra spaces
         allergies_list = [a.strip() for a in allergies_raw.split(",") if a.strip()]
     elif isinstance(allergies_raw, list):
         allergies_list = [str(a).strip() for a in allergies_raw if a]
@@ -51,7 +52,7 @@ try:
 
     history = load_history()
     excluded_foods = set(history.get("excluded_foods", []))
-    print(f"[DEBUG] Excluded foods: {excluded_foods}", file=sys.stderr)
+    # ⚙️ Suppressed excluded foods print for cleaner logs
 
     # -------------------- 2. Load dataset --------------------
     df_food = pd.read_csv("E:/DIET APP/backend/ML/datasets/preprocessed_dataset.csv")
@@ -102,10 +103,25 @@ try:
     scaler = MinMaxScaler()
     X_scaled = pd.DataFrame(scaler.fit_transform(X), columns=X.columns)
 
-    # -------------------- 5. Train model --------------------
+    # -------------------- 5. Train model & Evaluate --------------------
+    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
     model = GradientBoostingRegressor()
-    model.fit(X_scaled, y)
+    model.fit(X_train, y_train)
     print("[DEBUG] Model trained successfully", file=sys.stderr)
+
+    # ✅ Evaluation metrics (printed only in terminal)
+    y_pred = model.predict(X_test)
+    mae = mean_absolute_error(y_test, y_pred)
+    mse = mean_squared_error(y_test, y_pred)
+    rmse = np.sqrt(mse)
+    r2 = r2_score(y_test, y_pred)
+
+    print("\n[MODEL PERFORMANCE METRICS]", file=sys.stderr)
+    print(f"MAE  (Mean Absolute Error): {mae:.6f}", file=sys.stderr)
+    print(f"MSE  (Mean Squared Error): {mse:.6f}", file=sys.stderr)
+    print(f"RMSE (Root Mean Squared Error): {rmse:.6f}", file=sys.stderr)
+    print(f"R²   (R-squared): {r2:.6f}", file=sys.stderr)
+    print("-----------------------------------------------------------", file=sys.stderr)
 
     # -------------------- 6. Recommendation function --------------------
     def recommend_top_foods(profile, df_food, model, meal_type=None):
@@ -128,7 +144,6 @@ try:
 
             df["predicted_fitness"] = model.predict(X_input)
 
-            # Dietary filters
             allergy_map = {
                 "Milk": "contains_milk", "Egg": "contains_egg", "Peanut": "contains_peanut",
                 "Tree nut": "contains_tree_nut", "Soy": "contains_soy", "Wheat": "contains_wheat",
@@ -145,7 +160,6 @@ try:
                 mask &= df["freesugar_g"] <= 0.1 * df["energy_kcal"] / 4
             df = df[mask]
 
-            # Veg / Non-Veg
             df_veg = df[df["food_group"].str.lower().isin(["vegetarian", "vegan"])]
             df_nonveg = df[df["food_group"].str.lower().isin(["meat", "poultry", "fish", "egg"])]
             top_veg = df_veg.sort_values("predicted_fitness", ascending=False).head(1)
