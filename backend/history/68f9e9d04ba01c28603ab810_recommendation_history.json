@@ -1,0 +1,195 @@
+{
+  "runs": [
+    {
+      "timestamp": "2025-10-23T14:17:24.763529",
+      "foods": [
+        "vegetable masala dosa",
+        "keema paratha",
+        "south indian curry",
+        "chettinad mutton biryani",
+        "vegetable pakora with yogurt dip",
+        "vada pav",
+        "masala baati",
+        "vegetable quesadilla"
+      ]
+    },
+    {
+      "timestamp": "2025-10-23T14:17:27.468715",
+      "foods": [
+        "fulwadi",
+        "chili methi paratha",
+        "dal baati churma",
+        "mutton biryani",
+        "palak chaat",
+        "vegetable pakora",
+        "biriyani",
+        "undhiyu"
+      ]
+    },
+    {
+      "timestamp": "2025-10-23T14:20:26.094947",
+      "foods": [
+        "saravana bhavan dosa",
+        "palak paratha",
+        "chole bhature",
+        "appam with egg curry",
+        "vegetable samosa",
+        "medu vada with coconut chutney",
+        "sabudana khichdi",
+        "churma"
+      ]
+    },
+    {
+      "timestamp": "2025-10-23T14:20:28.843759",
+      "foods": [
+        "vegetable dosa with sambar",
+        "chili dosa",
+        "vegetable masala biryani",
+        "chana biryani",
+        "kadhi pakora",
+        "onion pakora",
+        "kerala sadya",
+        "vegetable makhani"
+      ]
+    },
+    {
+      "timestamp": "2025-10-23T14:23:22.201058",
+      "foods": [
+        "moong dal chilla",
+        "masala dosa with sambar",
+        "biryani with raita",
+        "dal baati",
+        "chana chaat with avocado",
+        "curd vada with sambar",
+        "masala khichdi",
+        "bisi bele bath"
+      ]
+    },
+    {
+      "timestamp": "2025-10-23T14:23:25.194171",
+      "foods": [
+        "methi paratha",
+        "masala dosa with chutney",
+        "vegetable biryani with raita",
+        "curd bhature",
+        "pakora",
+        "rasam vada",
+        "gujarati pulao",
+        "vegetable pulao with raita"
+      ]
+    },
+    {
+      "timestamp": "2025-10-23T14:36:24.632889",
+      "foods": [
+        "curd paratha",
+        "paratha with green chutney",
+        "chili gobi with rice",
+        "vegetable pulao",
+        "medu vada with sambar",
+        "onion pakora with chutney",
+        "appam with coconut milk",
+        "palak chapati"
+      ]
+    },
+    {
+      "timestamp": "2025-10-23T14:36:55.525891",
+      "foods": [
+        "chickpea and avocado toast",
+        "idli sambar",
+        "hyderabadi biryani",
+        "gatte ki sabzi",
+        "batata vada",
+        "chana chaat",
+        "shahi gatte",
+        "dum aloo"
+      ]
+    },
+    {
+      "timestamp": "2025-10-24T23:50:37.056876",
+      "foods": [
+        "masala dosa",
+        "paneer and veggie stuffed paratha",
+        "biryani",
+        "pakistani biryani",
+        "dahi vada",
+        "pakoras",
+        "vegetable and tofu pulao",
+        "vegetable kurma"
+      ]
+    }
+  ],
+  "excluded_foods": [
+    "onion pakora with chutney",
+    "palak paratha",
+    "appam with egg curry",
+    "chickpea and avocado toast",
+    "dahi vada",
+    "appam with coconut milk",
+    "sabudana khichdi",
+    "vegetable masala biryani",
+    "vegetable biryani with raita",
+    "gujarati pulao",
+    "masala baati",
+    "chole bhature",
+    "moong dal chilla",
+    "chana biryani",
+    "vegetable masala dosa",
+    "masala dosa with sambar",
+    "vegetable pulao",
+    "medu vada with sambar",
+    "vegetable dosa with sambar",
+    "mutton biryani",
+    "paneer and veggie stuffed paratha",
+    "palak chaat",
+    "chili dosa",
+    "shahi gatte",
+    "chana chaat with avocado",
+    "curd vada with sambar",
+    "bisi bele bath",
+    "undhiyu",
+    "vegetable pakora",
+    "biryani with raita",
+    "palak chapati",
+    "biriyani",
+    "vegetable quesadilla",
+    "rasam vada",
+    "fulwadi",
+    "onion pakora",
+    "vegetable and tofu pulao",
+    "vegetable kurma",
+    "vegetable samosa",
+    "masala khichdi",
+    "keema paratha",
+    "curd bhature",
+    "chana chaat",
+    "curd paratha",
+    "chili gobi with rice",
+    "medu vada with coconut chutney",
+    "saravana bhavan dosa",
+    "vegetable pulao with raita",
+    "vegetable pakora with yogurt dip",
+    "masala dosa",
+    "idli sambar",
+    "dal baati churma",
+    "kerala sadya",
+    "vada pav",
+    "vegetable makhani",
+    "pakistani biryani",
+    "chettinad mutton biryani",
+    "masala dosa with chutney",
+    "dal baati",
+    "churma",
+    "methi paratha",
+    "south indian curry",
+    "pakora",
+    "kadhi pakora",
+    "paratha with green chutney",
+    "hyderabadi biryani",
+    "gatte ki sabzi",
+    "batata vada",
+    "dum aloo",
+    "biryani",
+    "chili methi paratha",
+    "pakoras"
+  ]
+}

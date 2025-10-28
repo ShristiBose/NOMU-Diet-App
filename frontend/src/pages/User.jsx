@@ -124,23 +124,42 @@ export default function User() {
     }
   };
 
-  const handleSendMessage = () => {
-    if (!chatInput.trim()) return;
+const handleSendMessage = async () => {
+  if (!chatInput.trim()) return;
 
-    // Add user message
-    setChatMessages([...chatMessages, { sender: "user", text: chatInput }]);
+  // Add user's message to chat
+  const newMessage = { sender: "user", text: chatInput };
+  setChatMessages((prev) => [...prev, newMessage]);
 
-    // Clear input
-    setChatInput("");
+  const currentInput = chatInput;
+  setChatInput("");
 
-    // Example bot reply (replace with API call)
-    setTimeout(() => {
-      setChatMessages(prev => [
-        ...prev,
-        { sender: "bot", text: "Thanks for your message! I will get back to you with suggestions." },
-      ]);
-    }, 500);
-  };
+  try {
+    const res = await fetch("http://localhost:5000/api/chatbot", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userMessage: currentInput,
+        predictedFood: meals ? Object.values(meals).flat()[0] : "food item",
+      }),
+    });
+
+    const data = await res.json();
+
+    // Add bot's reply
+    setChatMessages((prev) => [
+      ...prev,
+      { sender: "bot", text: data.suggestion || "Sorry, I couldn’t generate a reply." },
+    ]);
+  } catch (err) {
+    console.error("Chatbot error:", err);
+    setChatMessages((prev) => [
+      ...prev,
+      { sender: "bot", text: "There was a problem reaching the local AI." },
+    ]);
+  }
+};
+
 
   if (!profile) return <p>Loading profile...</p>;
 
